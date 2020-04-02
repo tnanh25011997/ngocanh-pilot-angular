@@ -1,0 +1,14 @@
+.title{
+    margin: 0 auto;
+    color: white;
+    font-size: 35px!important;
+}
+.mat-toolbar-row, .mat-toolbar-single-row{
+    height: 100px!important;
+    margin-top: 10px;
+    background-color: dodgerblue;
+}
+.container {
+    border: 1px lightgrey groove;
+    box-shadow: 2px 2px 5px gray;
+}

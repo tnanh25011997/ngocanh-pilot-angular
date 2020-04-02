@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-between">
+        <h2>Edit Brand</h2>
+        <button mat-button (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div style="overflow: auto; height: 450px;">
+            <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                <div class="mt-4 input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Brand ID</span>
+                    </div>
+                    <input readonly="readonly" type="text" class="form-control" 
+                    name="brandId" 
+                    #brandId="ngModel" 
+                    [(ngModel)]="brandService.formData.brandId">
+                    <div class="text-left text-danger" *ngIf="brandId.invalid && brandId.touched">
+                        Please enter Department name
+                    </div>
+                </div>
+
+                <div class="mt-4 input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Brand Name</span>
+                    </div>
+                    <input required minlength="1" type="text" class="form-control" 
+                    name="brandName" 
+                    #brandName="ngModel" 
+                    [(ngModel)]="brandService.formData.brandName">
+                    <div class="text-left text-danger" *ngIf="brandName.invalid && brandName.touched">
+                        Please enter Department name
+                    </div>
+                </div>
+                <div class="mt-4 input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Logo</span>
+                        </div>
+                        <input required minlength="1" type="text" class="form-control" 
+                        name="logo" 
+                        #logo="ngModel" 
+                        [(ngModel)]="brandService.formData.logo">
+                        <div class="text-left text-danger" *ngIf="logo.invalid && logo.touched">
+                            Please enter logo
+                        </div>
+                </div>
+                <div class="mt-4 input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Description</span>
+                        </div>
+                        <input required minlength="1" type="text" class="form-control" 
+                        name="description" 
+                        #description="ngModel" 
+                        [(ngModel)]="brandService.formData.description">
+                        <div class="text-left text-danger" *ngIf="description.invalid && description.touched">
+                            Please enter description
+                        </div>
+                </div>
+    
+                <button class="mt-4" mat-raised-button 
+                color="primary" type="submit" [disabled]="form.invalid">Update Brand</button>
+            </form>
+        </div>
+    

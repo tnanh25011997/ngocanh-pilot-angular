@@ -1,0 +1,12 @@
+.form-login{
+    background-color: ghostwhite;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 4px 4px 5px gray;
+    width: 400px;
+    padding-left: 50px;
+}
+
+.form-login .form-group input{
+    width: 300px;
+}
