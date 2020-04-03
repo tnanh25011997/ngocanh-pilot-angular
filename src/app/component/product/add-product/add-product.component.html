@@ -1,1 +1,96 @@
-<p>add-product works!</p>
+<div class="d-flex justify-content-between">
+    <h2>Add new Product</h2>
+    <button mat-button (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div style="overflow: auto; height: 450px;">
+        <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+            <div class="mt-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Product Name</span>
+                </div>
+                <input required minlength="1" type="text" class="form-control" 
+                name="productName" 
+                #productName="ngModel" 
+                [(ngModel)]="productService.formData.productName">
+                <div class="text-left text-danger" *ngIf="productName.invalid && productName.touched">
+                    Please enter Product name
+                </div>
+            </div>
+            <div class="mt-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Quantity</span>
+                </div>
+                <input required minlength="1" type="number" class="form-control" 
+                name="quantity" 
+                #quantity="ngModel" 
+                [(ngModel)]="productService.formData.quantity">
+                <div class="text-left text-danger" *ngIf="quantity.invalid && quantity.touched">
+                    Please enter quantity
+                </div>
+            </div>
+            <div class="mt-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Price</span>
+                </div>
+                <input required minlength="1" type="number" class="form-control" 
+                name="price" 
+                #price="ngModel" 
+                [(ngModel)]="productService.formData.price">
+                <div class="text-left text-danger" *ngIf="price.invalid && price.touched">
+                    Please enter price
+                </div>
+            </div>
+            <div class="mt-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Sale Date</span>
+                </div>
+                <input required minlength="1" type="date" class="form-control" 
+                name="saleDate" 
+                #saleDate="ngModel" 
+                [(ngModel)]="productService.formData.saleDate">
+                <div class="text-left text-danger" *ngIf="saleDate.invalid && saleDate.touched">
+                    Please enter Sale Date
+                </div>
+            </div>
+            <div class="mt-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Image</span>
+                </div>
+                <input required minlength="1" type="text" class="form-control" 
+                name="image" 
+                #image="ngModel" 
+                [(ngModel)]="productService.formData.image">
+                <div class="text-left text-danger" *ngIf="image.invalid && image.touched">
+                    Please enter image
+                </div>
+            </div>
+            <div class="mt-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Description</span>
+                </div>
+                <input required minlength="1" type="text" class="form-control" 
+                name="description" 
+                #description="ngModel" 
+                [(ngModel)]="productService.formData.description">
+                <div class="text-left text-danger" *ngIf="description.invalid && description.touched">
+                    Please enter description
+                </div>
+            </div>
+            <div class="mt-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Brand Name</span>
+                </div>
+                <select name="brandName" #brandName="ngModel" [(ngModel)]="brandNameDefault">
+                    <option *ngFor="let name of listBrandName" [value]="name">
+                        {{name}}
+                    </option>
+                </select>
+            </div>
+            
+
+            <button class="mt-4" mat-raised-button 
+            color="primary" type="submit" [disabled]="form.invalid">Add Brand</button>
+        </form>
+    </div>

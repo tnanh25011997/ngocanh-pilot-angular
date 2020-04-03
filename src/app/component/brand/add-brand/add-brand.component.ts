@@ -15,6 +15,8 @@ export class AddBrandComponent implements OnInit {
     public brandService: BrandService,
     private snackBar: MatSnackBar) { }
 
+  
+
   ngOnInit(): void {
     this.resetForm();
   }

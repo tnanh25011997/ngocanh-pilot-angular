@@ -37,4 +37,14 @@ export class BrandService {
   filter(filterBy: string){
     this._listeners.next(filterBy);
   }
+
+  getAllBrandName() {
+    const url = this.APIUrl + "get-all-name";
+    return this.http.get<string[]>(url);
+  }
+
+  findBrandByName(brandName: string) {
+    const url = this.APIUrl + "get-brand/" + brandName;
+    return this.http.get<Brand>(url);
+  }
 }
