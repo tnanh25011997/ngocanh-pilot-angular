@@ -1,0 +1,11 @@
+.confirm {
+    float: right;
+}
+
+.butyes {
+    width: 100px;
+}
+.butno {
+    width: 100px;
+    margin-left: 30px;
+}

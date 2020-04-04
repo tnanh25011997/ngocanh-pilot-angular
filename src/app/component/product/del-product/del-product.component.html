@@ -1,1 +1,8 @@
-<p>del-product works!</p>
+<div class="delete">
+    <h1>Confirm</h1><br>
+    <span>Are you sure to delete <b>{{ service.formData.productName }}</b> ?</span><br><br>
+    <div class="confirm">
+        <button class="butyes btn btn-primary" (click)="confirmDelete()">Yes</button>
+        <button class="butno btn btn-secondary" (click)="closeDialog()">No</button>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 import { FormsModule } from '@angular/forms';
@@ -56,6 +57,7 @@ import { NavBarComponent } from './component/common/nav-bar/nav-bar.component';
     MatDialogModule,
     FormsModule,
     MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],

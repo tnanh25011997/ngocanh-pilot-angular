@@ -5,6 +5,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Product } from '../model/product.model';
 import { ProductService } from 'src/app/service/product.service';
 import { AddProductComponent } from '../product/add-product/add-product.component';
+import { DelProductComponent } from './del-product/del-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @Component({
   selector: 'app-product',
@@ -22,7 +24,7 @@ export class ProductComponent implements OnInit {
   }
 
   listData: MatTableDataSource<any>;
-  displayedColumns : string[] = ['ProductID','ProductName','Quantity','Price','SaleDate','Image','Description','BrandName'];
+  displayedColumns : string[] = ['ProductID','ProductName','Quantity','Price','SaleDate','Image','Description','BrandName','Options'];
 
   ngOnInit(): void {
     this.refreshProductList();
@@ -36,10 +38,20 @@ export class ProductComponent implements OnInit {
   }
 
   onDelete(product : Product){
-    
+    this.productService.formData = product;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(DelProductComponent, dialogConfig);
   }
   onEdit(product : Product){
-   
+    this.productService.formData = product;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(EditProductComponent, dialogConfig);
   }
   onAdd(){
     const dialogConfig = new MatDialogConfig();

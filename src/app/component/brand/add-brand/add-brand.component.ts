@@ -15,7 +15,7 @@ export class AddBrandComponent implements OnInit {
     public brandService: BrandService,
     private snackBar: MatSnackBar) { }
 
-  
+  private logoName: String;
 
   ngOnInit(): void {
     this.resetForm();
@@ -31,12 +31,17 @@ export class AddBrandComponent implements OnInit {
       description:''
     }
   }
-
+  onFileSelect(event){
+    console.log(event.target.files[0]['name']);
+    this.logoName = event.target.files[0]['name'];
+    
+  }
   onClose(){
     this.dialogbox.close();
     this.brandService.filter('refresh click');
   }
   onSubmit(form:NgForm){
+    form.value.logo = this.logoName;
     this.brandService.addBrand(form.value).subscribe(
       res=> {
         this.resetForm(form);

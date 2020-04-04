@@ -23,6 +23,10 @@ export class BrandComponent implements OnInit {
       this.refreshBrandList();
     })
   }
+  public totalPage: number;
+  public currentPage = 0;
+  public pageNumbersList: Array<number>;
+  private brandsList: Array<Brand>;
 
   listData: MatTableDataSource<any>;
   displayedColumns : string[] = ['BrandID','BrandName','BrandLogo','BrandDescription','Options'];
@@ -32,10 +36,14 @@ export class BrandComponent implements OnInit {
   }
 
   refreshBrandList(){
-    // var dummyData = [{brandId:1, brandName:"Apple", brandLogo:"apple.png", brandDescription:"alo"}];
-    // this.listData = new MatTableDataSource(dummyData);
-    this.brandService.getAllBrandList().subscribe(data=>{
-      this.listData = new MatTableDataSource(data);
+    // this.brandService.getAllBrandList().subscribe(data=>{
+    //   this.listData = new MatTableDataSource(data);
+    // });
+    this.brandService.getBrandPagination(this.currentPage).subscribe(data=>{
+      this.brandsList = data['responseData'],
+      this.totalPage = data['totalPage'],
+      this.pageNumbersList = data['pageNumbersList'],
+      this.listData = new MatTableDataSource(this.brandsList);
     });
   }
 
@@ -61,6 +69,10 @@ export class BrandComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
     this.dialog.open(EditBrandComponent, dialogConfig);
+  }
+  setPageChange(currentPage: any) {
+    this.currentPage = currentPage;
+    this.refreshBrandList();
   }
 
 }

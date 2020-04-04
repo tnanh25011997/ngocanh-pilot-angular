@@ -24,7 +24,16 @@ export class DelBrandComponent implements OnInit {
         verticalPosition:'top',
         panelClass: ['warning']
       })
-    });
+    },
+    error => {
+      this.closeDialog();
+      this.snackBar.open("Can not delete this brand",'',{
+        duration:3000,
+        verticalPosition:'top',
+        panelClass: ['warning']
+      })
+    }
+    );
   }
   closeDialog(){
     this.dialogbox.close();

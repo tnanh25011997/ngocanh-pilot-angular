@@ -17,6 +17,7 @@
                 <ng-container matColumnDef="BrandLogo">
                         <mat-header-cell *matHeaderCellDef>Brand Logo</mat-header-cell>
                         <mat-cell *matCellDef="let element">{{element.logo}}</mat-cell>
+                        
                 </ng-container>
                 <ng-container matColumnDef="BrandDescription">
                         <mat-header-cell *matHeaderCellDef>Brand Description</mat-header-cell>
@@ -38,3 +39,33 @@
     </div>
 </div>
 <button class="mt-2" mat-raised-button (click)="onAdd()" color="primary">Add Brand</button>
+
+<ul class="pagination pagination-sm justify-content-end">
+    <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
+        <button class="page-link page-nav-end" matTooltip="First page" (click)="setPageChange(0)">
+            <<
+        </button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
+        <button class="page-link page-nav" matTooltip="Previous page" (click)="setPageChange(currentPage - 1)">
+            <
+        </button>
+    </li>
+    <li class="page-item" *ngFor="let page of pageNumbersList">
+        <button class="page-nav page-link" [ngClass]="{'current': page - 1 === currentPage}" matTooltip="Page {{ page }}" (click)="setPageChange(page - 1)">
+            {{ page }}
+        </button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
+        <button class="page-link page-nav" matTooltip="Next page" (click)="setPageChange(currentPage + 1)">
+            >
+        </button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
+        <button class="page-link page-nav-end" matTooltip="Last page" (click)="setPageChange(totalPage - 1)">
+            >>
+        </button>
+    </li>
+</ul>
+
+

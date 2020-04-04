@@ -22,13 +22,11 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Logo</span>
                     </div>
-                    <input required minlength="1" type="text" class="form-control" 
+                    <input required  type="file"  
                     name="logo" 
-                    #logo="ngModel" 
+                    #logo="ngModel" (change)="onFileSelect($event)"
                     [(ngModel)]="brandService.formData.logo">
-                    <div class="text-left text-danger" *ngIf="logo.invalid && logo.touched">
-                        Please enter logo
-                    </div>
+                    
             </div>
             <div class="mt-4 input-group">
                     <div class="input-group-prepend">

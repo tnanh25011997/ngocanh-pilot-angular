@@ -19,6 +19,14 @@ export class ProductService {
     const url = this.APIUrl+'add-new-product';
     return this.http.post(url, body);
   }
+  deleteProduct(body){
+    const url = this.APIUrl+'delete-product';
+    return this.http.post(url, body);
+  }
+  editProduct(body){
+    const url = this.APIUrl+'edit-product';
+    return this.http.put(url, body);
+  }
 
   private _listeners = new Subject<any>();
   listen() : Observable<any>{

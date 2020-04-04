@@ -1,8 +1,8 @@
 <div class="delete">
-        <strong>Confirm! </strong><br>
-        <span>Do you want to delete {{ service.formData.brandName }}?</span><br><br>
-        <div class="bt-confirm">
-            <button class="yes btn btn-primary" (click)="confirmDelete()">Yes</button>
-            <button class="no btn btn-secondary" (click)="closeDialog()">No</button>
+        <h1>Confirm</h1><br>
+        <span>Are you sure to delete <b>{{ service.formData.brandName }} ?</b></span><br><br>
+        <div class="confirm">
+            <button class="butyes btn btn-primary" (click)="confirmDelete()">Yes</button>
+            <button class="butno btn btn-secondary" (click)="closeDialog()">No</button>
         </div>
-    </div>
+</div>

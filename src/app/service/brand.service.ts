@@ -16,6 +16,9 @@ export class BrandService {
   getAllBrandList(): Observable<Brand[]> {
     return this.http.get<Brand[]>(this.APIUrl + "get-all-brand");
   }
+  getBrandPagination(page: number){
+    return this.http.get(this.APIUrl + 'get-brands-paginate?page=' + page);
+  }
 
   addBrand(body){
     const url = this.APIUrl+'add-brand';
