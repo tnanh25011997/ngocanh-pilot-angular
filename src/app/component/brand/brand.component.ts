@@ -20,9 +20,12 @@ export class BrandComponent implements OnInit {
     this.brandService.listen().subscribe((m:any)=>{
       //subscribe su kien listen
       console.log(m);
-      this.refreshBrandList();
+      this.refreshBrandList('');
+      this.stringSearch = '';
     })
   }
+  private tempSearch = false;
+  public stringSearch = '';
   public totalPage: number;
   public currentPage = 0;
   public pageNumbersList: Array<number>;
@@ -32,19 +35,22 @@ export class BrandComponent implements OnInit {
   displayedColumns : string[] = ['BrandID','BrandName','BrandLogo','BrandDescription','Options'];
 
   ngOnInit(): void {
-    this.refreshBrandList();
+    this.refreshBrandList('');
   }
 
-  refreshBrandList(){
+  refreshBrandList(brandName: string){
     // this.brandService.getAllBrandList().subscribe(data=>{
     //   this.listData = new MatTableDataSource(data);
     // });
-    this.brandService.getBrandPagination(this.currentPage).subscribe(data=>{
+    this.brandService.getBrandPagination(this.currentPage, brandName).subscribe(data=>{
       this.brandsList = data['responseData'],
       this.totalPage = data['totalPage'],
       this.pageNumbersList = data['pageNumbersList'],
       this.listData = new MatTableDataSource(this.brandsList);
     });
+    if(brandName != ''){
+      this.tempSearch = true;
+    }
   }
 
   onAdd(){
@@ -72,7 +78,13 @@ export class BrandComponent implements OnInit {
   }
   setPageChange(currentPage: any) {
     this.currentPage = currentPage;
-    this.refreshBrandList();
+    if(this.tempSearch == true){
+      this.refreshBrandList(this.stringSearch);
+    }else{
+      this.refreshBrandList('');
+    }
   }
+
+  
 
 }

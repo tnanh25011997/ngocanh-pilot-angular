@@ -13,3 +13,14 @@
     margin: 2px 3px;
     padding: 5px 8px;
 }
+.brand-bar{
+    display: block;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.brand-bar .form-group{
+    float: right;
+}
+.brand-bar .butsearch{
+    margin-left: 10px!important;
+}

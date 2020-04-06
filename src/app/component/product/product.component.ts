@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
+    dialogConfig.width = "60%";
     this.dialog.open(DelProductComponent, dialogConfig);
   }
   onEdit(product : Product){
@@ -50,14 +50,14 @@ export class ProductComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
+    dialogConfig.width = "60%";
     this.dialog.open(EditProductComponent, dialogConfig);
   }
   onAdd(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
+    dialogConfig.width = "70%";
     this.dialog.open(AddProductComponent, dialogConfig);
   }
 
