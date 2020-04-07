@@ -9,3 +9,7 @@
     width: 100px;
     margin-left: 30px;
 }
+::ng-deep .custom-snackbar{
+    background-color: #33cc00!important;
+    color: white;
+}

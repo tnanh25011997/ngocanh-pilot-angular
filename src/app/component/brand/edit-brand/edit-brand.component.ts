@@ -35,8 +35,9 @@ export class EditBrandComponent implements OnInit {
         
         this.snackBar.open(res["message"].toString(),'',{
           duration:3000,
-          panelClass: ['blue-snackbar'],
-          verticalPosition:'top'
+          panelClass:'custom-snackbar',
+          verticalPosition:'top',
+          horizontalPosition:'right'
         })
       }
     )

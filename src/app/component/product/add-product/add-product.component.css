@@ -1,0 +1,4 @@
+::ng-deep .custom-snackbar{
+    background-color: #33cc00!important;
+    color: white;
+}

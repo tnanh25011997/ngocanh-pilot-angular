@@ -22,7 +22,8 @@ export class DelProductComponent implements OnInit {
       this.snackBar.open(res["message"].toString(),'',{
         duration:3000,
         verticalPosition:'top',
-        panelClass: ['warning']
+        panelClass: 'custom-snackbar',
+        horizontalPosition:'right'
       })
     });
   }

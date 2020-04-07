@@ -15,6 +15,11 @@ export class ProductService {
   getAllProductList(): Observable<Product[]> {
     return this.http.get<Product[]>(this.APIUrl + "get-all-product");
   }
+  getProductPagination(page: number, body: any) {
+    const url = this.APIUrl + '/get-products-paginate?page=' + page;
+    return this.http.post(url, body);
+  }
+
   addProduct(body){
     const url = this.APIUrl+'add-new-product';
     return this.http.post(url, body);

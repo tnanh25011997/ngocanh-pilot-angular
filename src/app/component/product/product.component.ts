@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/service/product.service';
 import { AddProductComponent } from '../product/add-product/add-product.component';
 import { DelProductComponent } from './del-product/del-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -15,26 +16,51 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService: ProductService, private dialog:MatDialog) { 
+  constructor(private productService: ProductService, private dialog:MatDialog, public brandService: BrandService) { 
     this.productService.listen().subscribe((m:any)=>{
       //subscribe su kien listen
       console.log(m);
-      this.refreshProductList();
+      this.refreshProductList(this.formSearchNull);
     })
   }
 
+  private productList: Array<Product>;
+  public brandNameDefault;
+  public priceFromDefault;
+  public priceToDefault;
+  public listBrandName: string[];
+  public totalPage: number;
+  public currentPage = 0;
+  public pageNumbersList: Array<number>;
+  private formSearchNull = { 'productName': '', 'brandName': '', 'priceFrom': 0, 'priceTo': 0 };
+  public formSearchActive;
+  private tempSearch = false;
   listData: MatTableDataSource<any>;
   displayedColumns : string[] = ['ProductID','ProductName','Quantity','Price','SaleDate','Image','Description','BrandName','Options'];
 
   ngOnInit(): void {
-    this.refreshProductList();
+    this.brandNameDefault='Apple';
+    this.priceFromDefault=0;
+    this.priceToDefault=0;
+    this.refreshProductList(this.formSearchNull);
+    this.brandService.getAllBrandName().subscribe(res=>{
+      this.listBrandName = res;
+    });
   }
 
-  refreshProductList(){
+  refreshProductList(body: any){
     
-    this.productService.getAllProductList().subscribe(data=>{
-      this.listData = new MatTableDataSource(data);
+    this.productService.getProductPagination(this.currentPage, body).subscribe(data=>{
+      this.productList = data['responseData'],
+      this.totalPage = data['totalPage'],
+      this.pageNumbersList = data['pageNumbersList'],
+      this.listData = new MatTableDataSource(this.productList);
     });
+    this.formSearchActive = body;
+    // If using search
+    if (body.productName != '' || body.brandName != '' || body.priceFrom != 0 || body.priceTo != 0) {
+      this.tempSearch = true;
+    }
   }
 
   onDelete(product : Product){
@@ -60,5 +86,13 @@ export class ProductComponent implements OnInit {
     dialogConfig.width = "70%";
     this.dialog.open(AddProductComponent, dialogConfig);
   }
-
+  setPageChange(currentPage: any){
+    this.currentPage = currentPage;
+    if(this.tempSearch == true){
+      this.refreshProductList(this.formSearchActive);
+    }else{
+      this.refreshProductList(this.formSearchNull);
+    }
+  }
+  
 }

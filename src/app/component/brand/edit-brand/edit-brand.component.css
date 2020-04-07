@@ -1,3 +1,7 @@
 .but-reset{
     margin-left: 15px;
 }
+::ng-deep .custom-snackbar{
+    background-color: #33cc00!important;
+    color: white;
+}
