@@ -27,6 +27,7 @@ export class DelBrandComponent implements OnInit {
       })
     },
     error => {
+      this.closeDialog();
       this.snackBar.open("Can not delete this brand",'',{
         duration:3000,
         panelClass:'custom-snackbar-err',

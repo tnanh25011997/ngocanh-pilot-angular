@@ -2,7 +2,7 @@
     <button class="btn btn-light" [routerLink]="['/product']" routerLinkActive="active-button">PRODUCT</button>
     <button class="btn btn-light" [routerLink]="['/brand']" routerLinkActive="active-button">BRAND</button>
     <div class="butLogin">
-        <Button class="btn btn-light" [routerLink]="['/login']">LOGIN</Button>
+        <Button class="btn btn-light" (click)="logout()" [routerLink]="['/login']">LOGOUT</Button>
     </div>
 </div>
 

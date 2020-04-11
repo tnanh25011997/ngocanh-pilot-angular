@@ -15,7 +15,10 @@ export class AddBrandComponent implements OnInit {
     public brandService: BrandService,
     private snackBar: MatSnackBar) { }
 
-  private logoName: String;
+  private logoName: string;
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  test: any;
 
   ngOnInit(): void {
     this.resetForm();
@@ -32,8 +35,26 @@ export class AddBrandComponent implements OnInit {
     }
   }
   onFileSelect(event){
+    //change imagename
+    let r = Math.random().toString(36).substring(7);
     console.log(event.target.files[0]['name']);
     this.logoName = event.target.files[0]['name'];
+    this.test = this.logoName.split('.');
+    this.logoName=this.test[0]+"-"+r+"."+this.test[1];
+    console.log(this.logoName);
+
+    //convert to base64
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = function () {
+      //me.modelvalue = reader.result;
+      //console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+
+    this.selectedFiles = event.target.files;
     
   }
   onClose(){
@@ -52,8 +73,11 @@ export class AddBrandComponent implements OnInit {
           verticalPosition:'top',
           horizontalPosition:'right'
         })
-      }
+      },
     )
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.brandService.pushFileToStorage(this.currentFileUpload,this.logoName).subscribe(); 
     
   }
+  
 }

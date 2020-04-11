@@ -8,6 +8,7 @@ import { AddProductComponent } from '../product/add-product/add-product.componen
 import { DelProductComponent } from './del-product/del-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,8 @@ import { NgForm } from '@angular/forms';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService: ProductService, private dialog:MatDialog, public brandService: BrandService) { 
+  constructor(private productService: ProductService, private dialog:MatDialog, 
+    public brandService: BrandService, private router:Router) { 
     this.productService.listen().subscribe((m:any)=>{
       //subscribe su kien listen
       console.log(m);
@@ -55,8 +57,12 @@ export class ProductComponent implements OnInit {
       this.totalPage = data['totalPage'],
       this.pageNumbersList = data['pageNumbersList'],
       this.listData = new MatTableDataSource(this.productList);
+    },
+    error =>{
+      this.router.navigate(['/login']);
     });
     this.formSearchActive = body;
+    
     // If using search
     if (body.productName != '' || body.brandName != '' || body.priceFrom != 0 || body.priceTo != 0) {
       this.tempSearch = true;

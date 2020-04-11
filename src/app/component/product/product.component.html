@@ -16,21 +16,19 @@
             <div class="col-2">
                 <select class="custom-select" [ngModel]="this.priceFromDefault" name="priceFrom">
                     <option value="0">Price from</option>
-                    <option value="1000000">{{1000000 | currency:"VND":"symbol"}}</option>
-                    <option value="3000000">{{3000000 | currency:"VND":"symbol"}}</option>
-                    <option value="6000000">{{6000000 | currency:"VND":"symbol"}}</option>
-                    <option value="10000000">{{10000000 | currency:"VND":"symbol"}}</option>
-                    <option value="20000000">{{20000000 | currency:"VND":"symbol"}}</option>
+                    <option value="1000000">1.000.000</option>
+                    <option value="5000000">5.000.000</option> 
+                    <option value="10000000">10.000.000</option>
+                    <option value="20000000">20.000.000</option>
                 </select>
             </div>
             <div class="col-2">
                 <select class="custom-select" [ngModel]="this.priceToDefault" ngModel name="priceTo">
                     <option value="0">Price to</option>
-                    <option value="1000000">{{1000000 | currency:"VND":"symbol"}}</option>
-                    <option value="3000000">{{3000000 | currency:"VND":"symbol"}}</option>
-                    <option value="6000000">{{6000000 | currency:"VND":"symbol"}}</option>
-                    <option value="10000000">{{10000000 | currency:"VND":"symbol"}}</option>
-                    <option value="20000000">{{20000000 | currency:"VND":"symbol"}}</option>
+                    <option value="1000000">1.000.000</option>
+                    <option value="5000000">5.000.000</option>
+                    <option value="10000000">10.000.000</option>
+                    <option value="20000000">20.000.000</option>
                 </select>
             </div>
             <div class="col-2">
@@ -99,27 +97,27 @@
 <!-- Pagination -->
 <ul class="pagination pagination-sm justify-content-end">
     <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
-        <button class="page-link" matTooltip="First page" (click)="setPageChange(0)">
+        <button class="page-link page-nav-end" matTooltip="First page" (click)="setPageChange(0)">
             <<
         </button>
     </li>
     <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
-        <button class="page-link" matTooltip="Previous page" (click)="setPageChange(currentPage - 1)">
+        <button class="page-link page-nav" matTooltip="Previous page" (click)="setPageChange(currentPage - 1)">
             <
         </button>
     </li>
     <li class="page-item" *ngFor="let page of pageNumbersList">
-        <button class="page-link" [ngClass]="{'pager': page -1 === currentPage}" matTooltip="Page {{ page }}" (click)="setPageChange(page - 1)">
+        <button class="page-link page-nav" [ngClass]="{'current': page -1 === currentPage}" matTooltip="Page {{ page }}" (click)="setPageChange(page - 1)">
             {{ page }}
         </button>
     </li>
     <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
-        <button class="page-link" matTooltip="Next page" (click)="setPageChange(currentPage + 1)">
+        <button class="page-link page-nav" matTooltip="Next page" (click)="setPageChange(currentPage + 1)">
             >
         </button>
     </li>
     <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
-        <button class="page-link" matTooltip="Last page" (click)="setPageChange(totalPage - 1)">
+        <button class="page-link page-nav-end" matTooltip="Last page" (click)="setPageChange(totalPage - 1)">
             >>
         </button>
     </li>

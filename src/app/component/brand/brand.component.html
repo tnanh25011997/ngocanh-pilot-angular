@@ -31,7 +31,9 @@
                 </ng-container>
                 <ng-container matColumnDef="BrandLogo">
                         <mat-header-cell *matHeaderCellDef>Brand Logo</mat-header-cell>
-                        <mat-cell *matCellDef="let element">{{element.logo}}</mat-cell>
+                        <mat-cell *matCellDef="let element" class="mat-img">
+                            <img src="../../../assets/images/{{ element.logo }}" class="img">
+                        </mat-cell>
                         
                 </ng-container>
                 <ng-container matColumnDef="BrandDescription">

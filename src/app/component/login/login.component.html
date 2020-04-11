@@ -1,15 +1,17 @@
 <div class="form-login">
     <br>
     <legend>Login</legend>
-    <form>
+    <form #form="ngForm" (submit)="onSubmit(form)">
         <div class="form-group">
             <label>Username <small style="color: red">(*)</small>:</label>
-            <input type="text" class="form-control" placeholder="Username">
+            <input type="text" name="username"  
+            
+            [(ngModel)]="username"  required class="form-control" placeholder="Username">
             
         </div>
         <div class="form-group">
             <label for="pwd">Password <small style="color: red">(*)</small>:</label>
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" name="password" [(ngModel)]="password" required class="form-control" placeholder="Password">
         </div>
         <div class="button-row">
             <button type="submit" class="btn btn-primary">Sign In</button>

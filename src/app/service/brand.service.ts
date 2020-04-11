@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Brand } from '../component/model/brand.model';
 import { Subject, Observable } from 'rxjs';
 
@@ -17,11 +17,11 @@ export class BrandService {
     return this.http.get<Brand[]>(this.APIUrl + "get-all-brand");
   }
   getBrandPagination(page: number, name: string){
-    return this.http.get(this.APIUrl + 'get-brands-paginate?page=' + page + '&name='+name);
+    return this.http.get(this.APIUrl + 'get-brands-paginate?page=' + page + '&name='+name+'&access_token='+localStorage.getItem('access_token'));
   }
 
   addBrand(body){
-    const url = this.APIUrl+'add-brand';
+    const url = this.APIUrl+'insert-brand';
     return this.http.post(url, body);
   }
   deleteBrand(body){
@@ -50,4 +50,15 @@ export class BrandService {
     const url = this.APIUrl + "get-brand/" + brandName;
     return this.http.get<Brand>(url);
   }
+
+  pushFileToStorage(file: File, logoName: string): Observable<HttpEvent<{}>> {
+    const data: FormData = new FormData();
+    data.append('file', file);
+    data.append('logoName', logoName);
+    const newRequest = new HttpRequest('POST', 'http://localhost:8080/ngocanh-pilot/brand/upload', data, {
+    reportProgress: true,
+    responseType: 'text'
+    });
+    return this.http.request(newRequest);
+    }
 }

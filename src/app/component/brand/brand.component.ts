@@ -7,6 +7,7 @@ import { AddBrandComponent } from './add-brand/add-brand.component';
 import { DelBrandComponent } from './del-brand/del-brand.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
 import { Brand } from '../model/brand.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { Brand } from '../model/brand.model';
 })
 export class BrandComponent implements OnInit {
 
-  constructor(private brandService: BrandService, private dialog:MatDialog) { 
+  constructor(private brandService: BrandService, private dialog:MatDialog,
+    private router: Router) { 
     this.brandService.listen().subscribe((m:any)=>{
       //subscribe su kien listen
       console.log(m);
@@ -46,8 +48,12 @@ export class BrandComponent implements OnInit {
       this.brandsList = data['responseData'],
       this.totalPage = data['totalPage'],
       this.pageNumbersList = data['pageNumbersList'],
-      this.listData = new MatTableDataSource(this.brandsList);
-    });
+      this.listData = new MatTableDataSource(this.brandsList)
+    },
+    error =>{
+      this.router.navigate(['/login']);
+    }
+    );
     if(brandName != ''){
       this.tempSearch = true;
     }

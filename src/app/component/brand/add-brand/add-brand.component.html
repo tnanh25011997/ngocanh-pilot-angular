@@ -18,13 +18,11 @@
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <textarea required minlength="1" type="text" class="form-control" 
+                <textarea  type="text" class="form-control" 
                 name="description" 
                 #description="ngModel" 
                 [(ngModel)]="brandService.formData.description" cols="30" rows="3"></textarea>
-                <div class="text-left text-danger" *ngIf="description.invalid && description.touched">
-                    Please enter description
-                </div>
+                
             </div>
             <div class="form-group">
                 <label>Logo</label>

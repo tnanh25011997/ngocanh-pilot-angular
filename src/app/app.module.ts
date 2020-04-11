@@ -11,7 +11,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrandComponent } from './component/brand/brand.component';
@@ -26,6 +26,7 @@ import { AddProductComponent } from './component/product/add-product/add-product
 import { EditProductComponent } from './component/product/edit-product/edit-product.component';
 import { DelProductComponent } from './component/product/del-product/del-product.component';
 import { NavBarComponent } from './component/common/nav-bar/nav-bar.component';
+import { InterceptorService } from './service/interceptor.service';
 
 
 @NgModule({
@@ -59,7 +60,13 @@ import { NavBarComponent } from './component/common/nav-bar/nav-bar.component';
     MatSnackBarModule,
     MatTooltipModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddBrandComponent,EditBrandComponent,DelBrandComponent]
 })
