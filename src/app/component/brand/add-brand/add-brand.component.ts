@@ -18,7 +18,7 @@ export class AddBrandComponent implements OnInit {
   private logoName: string;
   selectedFiles: FileList;
   currentFileUpload: File;
-  test: any;
+  parts: any;
 
   ngOnInit(): void {
     this.resetForm();
@@ -39,8 +39,8 @@ export class AddBrandComponent implements OnInit {
     let r = Math.random().toString(36).substring(7);
     console.log(event.target.files[0]['name']);
     this.logoName = event.target.files[0]['name'];
-    this.test = this.logoName.split('.');
-    this.logoName=this.test[0]+"-"+r+"."+this.test[1];
+    this.parts = this.logoName.split('.');
+    this.logoName=this.parts[0]+"-"+r+"."+this.parts[1];
     console.log(this.logoName);
 
     //convert to base64

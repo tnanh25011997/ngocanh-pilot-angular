@@ -7,7 +7,7 @@
     <div style="overflow: auto; height: 450px;">
             <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
                 <div class="form-group">
-                    <label>Brand ID</label>
+                    <label>Brand ID </label>
                     <input readonly="readonly" type="text" class="form-control" 
                     name="brandId" 
                     #brandId="ngModel" 
@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Brand Name</label>
+                    <label>Brand Name <span style="color: red;">(*)</span></label>
                     <input required minlength="1" type="text" class="form-control" 
                     name="brandName" 
                     #brandName="ngModel" 
@@ -28,21 +28,18 @@
                 
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea required minlength="1" type="text" class="form-control" 
+                    <textarea  type="text" class="form-control" 
                     name="description" 
                     #description="ngModel" 
                     [(ngModel)]="brandService.formData.description" cols="30" rows="3"></textarea>
-                    <div class="text-left text-danger" *ngIf="description.invalid && description.touched">
-                        Please enter description
-                    </div>
+                    
                 </div>
                 <div class="form-group">
-                    <label>Logo</label>
+                    <label>Logo <span style="color: red;">(*)</span></label>
                     <input  type="file" class="form-control" 
                     name="logo" 
                     #logo (change)="onFileSelect($event)"
                     >
-                    
                 </div>
     
                 <button class="mt-4" mat-raised-button 

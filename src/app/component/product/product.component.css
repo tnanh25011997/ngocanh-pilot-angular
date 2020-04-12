@@ -20,3 +20,11 @@
     margin: 2px 3px;
     padding: 5px 8px;
 }
+.mat-img{
+    width: 60px!important;
+    height: 60px!important;
+}
+.img{
+    width: 60px!important;
+    height: 60px!important;
+}

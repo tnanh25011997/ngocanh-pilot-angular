@@ -20,13 +20,36 @@ export class EditProductComponent implements OnInit {
   public listBrandName: string[];
   public brandNameDefault = 'Apple';
 
+  private imageName: string;
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  parts: any;
+
   ngOnInit(): void {
     this.brandService.getAllBrandName().subscribe(res=>{
       this.listBrandName = res;
     });
+    this.imageName = this.productService.formData.image;
   }
-  onSubmit(form){
 
+  onFileSelect(event){
+    
+    //change imagename
+    let r = Math.random().toString(36).substring(7);
+    console.log(event.target.files[0]['name']);
+    this.imageName = event.target.files[0]['name'];
+    this.parts = this.imageName.split('.');
+    this.imageName=this.parts[0]+"-"+r+"."+this.parts[1];
+    console.log(this.imageName);
+
+    
+
+    this.selectedFiles = event.target.files;
+    
+  }
+
+  onSubmit(form){
+    form.value.image = this.imageName;
     this.brandService.findBrandByName(form.value.brandName).subscribe(brand=>{
       form.value.brandEntity = brand;
       this.productService.editProduct(form.value).subscribe(res => {
@@ -39,7 +62,8 @@ export class EditProductComponent implements OnInit {
         })
       })
     });
-    console.log(form.value);
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.brandService.pushFileToStorage(this.currentFileUpload,this.imageName).subscribe();
   }
   onClose(){
     this.dialogbox.close();

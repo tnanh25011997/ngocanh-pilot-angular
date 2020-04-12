@@ -17,6 +17,7 @@
     display: block;
     overflow: hidden;
     margin-top: 20px;
+    padding-top: 5px;
 }
 .brand-bar .form-group{
     float: right;
@@ -25,8 +26,10 @@
     margin-left: 10px!important;
 }
 .mat-img{
-    width: 100px!important;
+    width: 60px!important;
+    height: 60px!important;
 }
 .img{
-    width: 100px!important;
+    width: 60px!important;
+    height: 60px!important;
 }

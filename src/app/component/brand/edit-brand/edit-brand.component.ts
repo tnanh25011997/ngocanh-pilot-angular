@@ -15,13 +15,26 @@ export class EditBrandComponent implements OnInit {
     public brandService: BrandService,
     private snackBar: MatSnackBar) { }
 
-  private logoName: String;
+  private logoName: string;
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  parts: any;
   ngOnInit(): void {
     this.logoName = this.brandService.formData.logo;
   }
   onFileSelect(event){
+    
+    //change imagename
+    let r = Math.random().toString(36).substring(7);
     console.log(event.target.files[0]['name']);
     this.logoName = event.target.files[0]['name'];
+    this.parts = this.logoName.split('.');
+    this.logoName=this.parts[0]+"-"+r+"."+this.parts[1];
+    console.log(this.logoName);
+
+    
+
+    this.selectedFiles = event.target.files;
     
   }
   onClose(){
@@ -40,7 +53,9 @@ export class EditBrandComponent implements OnInit {
           horizontalPosition:'right'
         })
       }
-    )
+    );
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.brandService.pushFileToStorage(this.currentFileUpload,this.logoName).subscribe();
     
   }
 

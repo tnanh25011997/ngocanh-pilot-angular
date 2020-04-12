@@ -68,7 +68,9 @@
                 </ng-container>
                 <ng-container matColumnDef="Image">
                     <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.image}}</mat-cell>
+                    <mat-cell *matCellDef="let element" class="mat-img">
+                        <img src="../../../assets/images/{{ element.image }}" class="img">
+                    </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="Description">
                     <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
