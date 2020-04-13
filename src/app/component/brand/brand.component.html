@@ -32,7 +32,7 @@
                 <ng-container matColumnDef="BrandLogo">
                         <mat-header-cell *matHeaderCellDef>Brand Logo</mat-header-cell>
                         <mat-cell *matCellDef="let element" class="mat-img">
-                            <img src="../../../assets/images/{{ element.logo }}" class="img">
+                            <img src="http://localhost:8080/ngocanh-pilot/images/{{ element.logo }}" class="img">
                         </mat-cell>
                         
                 </ng-container>
@@ -43,11 +43,11 @@
                 <ng-container matColumnDef="Options">
                         <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <button mat-icon-button (click)="onEdit(row)">
-                                <mat-icon>launch</mat-icon>
+                            <button class="btn btn-outline-primary" style="margin-right: 10px;" (click)="onEdit(row)">
+                                Edit
                             </button>
-                            <button mat-icon-button color="warn" (click)="onDelete(row)">
-                                <mat-icon>delete_outline</mat-icon>
+                            <button class="btn btn-outline-danger"  color="warn" (click)="onDelete(row)">
+                                Del
                             </button>
                         </mat-cell>
                     </ng-container>
