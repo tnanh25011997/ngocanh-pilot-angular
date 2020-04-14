@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/service/product.service';
 import { AddProductComponent } from '../product/add-product/add-product.component';
 import { DelProductComponent } from './del-product/del-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { ShowImageComponent } from '../common/show-image/show-image.component';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -27,7 +28,6 @@ export class ProductComponent implements OnInit {
   }
 
   private productList: Array<Product>;
-  public brandNameDefault;
   public priceFromDefault;
   public priceToDefault;
   public listBrandName: string[];
@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
   displayedColumns : string[] = ['ProductID','ProductName','Quantity','Price','SaleDate','Image','Description','BrandName','Options'];
 
   ngOnInit(): void {
-    this.brandNameDefault='Apple';
+    
     this.priceFromDefault=0;
     this.priceToDefault=0;
     this.refreshProductList(this.formSearchNull);
@@ -99,6 +99,12 @@ export class ProductComponent implements OnInit {
     }else{
       this.refreshProductList(this.formSearchNull);
     }
+  }
+
+  showLogo(image){
+    this.dialog.open(ShowImageComponent, {
+      data: image
+    })
   }
   
 }

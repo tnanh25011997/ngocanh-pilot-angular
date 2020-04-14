@@ -27,6 +27,7 @@ import { EditProductComponent } from './component/product/edit-product/edit-prod
 import { DelProductComponent } from './component/product/del-product/del-product.component';
 import { NavBarComponent } from './component/common/nav-bar/nav-bar.component';
 import { InterceptorService } from './service/interceptor.service';
+import { ShowImageComponent } from './component/common/show-image/show-image.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { InterceptorService } from './service/interceptor.service';
     EditProductComponent,
     DelProductComponent,
     NavBarComponent,
+    ShowImageComponent,
     
     
   ],

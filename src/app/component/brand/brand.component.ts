@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddBrandComponent } from './add-brand/add-brand.component';
 import { DelBrandComponent } from './del-brand/del-brand.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
+import { ShowImageComponent } from '../common/show-image/show-image.component';
 import { Brand } from '../model/brand.model';
 import { Router } from '@angular/router';
 
@@ -91,6 +92,10 @@ export class BrandComponent implements OnInit {
     }
   }
 
-  
+  showLogo(image){
+    this.dialog.open(ShowImageComponent, {
+      data: image
+    })
+  }
 
 }
