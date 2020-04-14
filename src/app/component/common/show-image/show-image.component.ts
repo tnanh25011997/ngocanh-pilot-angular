@@ -8,9 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class ShowImageComponent implements OnInit {
 
-  private image: string;
-  private name: string;
-  private temp: boolean;
+  public image: string;
+  public name: string;
+  public temp: boolean;
   constructor(public dialogRef: MatDialogRef<ShowImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
