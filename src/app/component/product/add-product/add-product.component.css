@@ -2,3 +2,10 @@
     background-color: #33cc00!important;
     color: white;
 }
+.show-image img{
+    widows: 100px;
+    height: 100px;
+}
+.but-reset{
+    margin-left: 15px;
+}

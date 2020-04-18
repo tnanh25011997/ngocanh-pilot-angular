@@ -4,7 +4,7 @@
         <mat-icon>close</mat-icon>
     </button>
 </div>
-<div style="overflow: auto; height: 450px;">
+<div style="overflow: auto; height: 500px;">
         <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
             <div class="form-group">
                 <label>Brand Name <span style="color: red;">(*)</span></label>
@@ -32,7 +32,10 @@
                 [(ngModel)]="brandService.formData.logo">    
                  
             </div>
-           
+            
+            <div class="show-image">
+                <img [src]="urlImg" class="img" *ngIf="urlImg">
+            </div>
 
             <button class="mt-4" mat-raised-button 
             color="primary" type="submit" [disabled]="form.invalid">Add Brand</button>

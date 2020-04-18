@@ -19,12 +19,23 @@ export class DelBrandComponent implements OnInit {
   confirmDelete(){
     this.service.deleteBrand(this.service.formData).subscribe(res=>{
       this.closeDialog();
-      this.snackBar.open(res["message"].toString(),'',{
-        duration:3000,
-        panelClass:'custom-snackbar',
-        verticalPosition:'top',
-        horizontalPosition:'right'
-      })
+      if(res["httpStatus"]==="OK"){
+        this.snackBar.open(res["message"].toString(),'',{
+          duration:3000,
+          panelClass:'custom-snackbar',
+          verticalPosition:'top',
+          horizontalPosition:'right'
+        })
+      }
+      else{
+        this.snackBar.open(res["message"].toString(),'',{
+          duration:3000,
+          panelClass:'custom-snackbar-err',
+          verticalPosition:'top',
+          horizontalPosition:'right'
+        })
+      }
+      
     },
     error => {
       this.closeDialog();

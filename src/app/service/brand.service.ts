@@ -56,9 +56,9 @@ export class BrandService {
     data.append('file', file);
     data.append('logoName', logoName);
     const newRequest = new HttpRequest('POST', 'http://localhost:8080/ngocanh-pilot/brand/upload', data, {
-    reportProgress: true,
-    responseType: 'text'
+      reportProgress: true,
+      responseType: 'text'
     });
     return this.http.request(newRequest);
-    }
+  }
 }

@@ -24,15 +24,27 @@ export class EditProductComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   parts: any;
+  urlImg: any;
+  tempFileChange: boolean;
 
   ngOnInit(): void {
     this.brandService.getAllBrandName().subscribe(res=>{
       this.listBrandName = res;
     });
     this.imageName = this.productService.formData.image;
+    this.tempFileChange = false;
   }
 
   onFileSelect(event){
+    this.tempFileChange = true;
+    //preview
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+          this.urlImg = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
     
     //change imagename
     let r = Math.random().toString(36).substring(7);
@@ -62,8 +74,11 @@ export class EditProductComponent implements OnInit {
         })
       })
     });
-    this.currentFileUpload = this.selectedFiles.item(0);
-    this.brandService.pushFileToStorage(this.currentFileUpload,this.imageName).subscribe();
+    if(this.tempFileChange == true){
+      this.currentFileUpload = this.selectedFiles.item(0);
+      this.brandService.pushFileToStorage(this.currentFileUpload,this.imageName).subscribe();
+    }
+    
   }
   onClose(){
     this.dialogbox.close();

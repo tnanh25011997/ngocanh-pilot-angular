@@ -4,7 +4,7 @@
             <mat-icon>close</mat-icon>
         </button>
     </div>
-    <div style="overflow: auto; height: 450px;">
+    <div style="overflow: auto; height: 550px;">
             <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
                 <div class="form-group">
                     <label>Brand ID </label>
@@ -41,10 +41,13 @@
                     #logo (change)="onFileSelect($event)"
                     >
                 </div>
-    
+                <div class="show-image">
+                    <img src="http://localhost:8080/ngocanh-pilot/images/{{ brandService.formData.logo }}" class="img" *ngIf="!urlImg">
+                    <img [src]="urlImg" class="img" *ngIf="urlImg">
+                </div>
                 <button class="mt-4" mat-raised-button 
                 color="primary" type="submit" [disabled]="form.invalid">Update Brand</button>
-                <button type="reset" class="btn btn-secondary but-reset">Reset</button>
+                <button  (click)="onClose(); $event.preventDefault()" class="btn btn-secondary but-reset">Cancel</button>
             </form>
         </div>
     

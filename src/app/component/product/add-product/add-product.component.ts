@@ -25,6 +25,8 @@ export class AddProductComponent implements OnInit {
   currentFileUpload: File;
   parts: any;
 
+  urlImg: any;
+
   ngOnInit(): void {
     this.resetForm();
     this.brandService.getAllBrandName().subscribe(res=>{
@@ -32,6 +34,15 @@ export class AddProductComponent implements OnInit {
     });
   }
   onFileSelect(event){
+    //preview
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+          this.urlImg = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
     //change imagename
     let r = Math.random().toString(36).substring(7);
     console.log(event.target.files[0]['name']);
