@@ -52,7 +52,7 @@ export class BrandComponent implements OnInit {
       this.listData = new MatTableDataSource(this.brandsList)
     },
     error =>{
-      this.router.navigate(['/login']);
+      //this.router.navigate(['/login']);
     }
     );
     if(brandName != ''){

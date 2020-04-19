@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
   public totalPage: number;
   public currentPage = 0;
   public pageNumbersList: Array<number>;
-  private formSearchNull = { 'productName': '', 'brandName': '', 'priceFrom': 0, 'priceTo': 0 };
+  public formSearchNull = { 'productName': '', 'brandName': '', 'priceFrom': 0, 'priceTo': 0 };
   public formSearchActive;
   private tempSearch = false;
   listData: MatTableDataSource<any>;
@@ -59,11 +59,11 @@ export class ProductComponent implements OnInit {
       this.listData = new MatTableDataSource(this.productList);
     },
     error =>{
-      this.router.navigate(['/login']);
+     
     });
     this.formSearchActive = body;
     
-    // If using search
+    // If search
     if (body.productName != '' || body.brandName != '' || body.priceFrom != 0 || body.priceTo != 0) {
       this.tempSearch = true;
     }

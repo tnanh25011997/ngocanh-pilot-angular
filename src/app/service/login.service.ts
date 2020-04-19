@@ -32,4 +32,11 @@ export class LoginService {
     localStorage.removeItem('refresh_token');
   }
 
+  isLogIn(): boolean {
+    if(localStorage.getItem('access_token') === null)
+      return false;
+    else
+      return true;
+  }
+
 }

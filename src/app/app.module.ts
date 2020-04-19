@@ -28,6 +28,8 @@ import { DelProductComponent } from './component/product/del-product/del-product
 import { NavBarComponent } from './component/common/nav-bar/nav-bar.component';
 import { InterceptorService } from './service/interceptor.service';
 import { ShowImageComponent } from './component/common/show-image/show-image.component';
+import { LoginGuard } from './service/login.guard';
+import { LogoutGuard } from './service/logout.guard';
 
 
 @NgModule({
@@ -63,6 +65,8 @@ import { ShowImageComponent } from './component/common/show-image/show-image.com
     MatTooltipModule
   ],
   providers: [
+    LoginGuard,
+    LogoutGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

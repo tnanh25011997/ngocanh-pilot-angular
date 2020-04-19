@@ -56,6 +56,12 @@ export class EditBrandComponent implements OnInit {
     this.brandService.filter('refresh click');
   }
   onSubmit(form:NgForm){
+    //upload image
+    if(this.tempFileChange == true){
+      this.currentFileUpload = this.selectedFiles.item(0);
+      this.brandService.pushFileToStorage(this.currentFileUpload,this.logoName).subscribe();
+    } 
+    
     form.value.logo = this.logoName;
     this.brandService.editBrand(form.value).subscribe(
       res=> {
@@ -68,10 +74,7 @@ export class EditBrandComponent implements OnInit {
         })
       }
     );
-    if(this.tempFileChange == true){
-      this.currentFileUpload = this.selectedFiles.item(0);
-      this.brandService.pushFileToStorage(this.currentFileUpload,this.logoName).subscribe();
-    }  
+     
   }
 
 }

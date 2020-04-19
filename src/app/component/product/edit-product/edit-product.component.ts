@@ -61,6 +61,12 @@ export class EditProductComponent implements OnInit {
   }
 
   onSubmit(form){
+    //upload image
+    if(this.tempFileChange == true){
+      this.currentFileUpload = this.selectedFiles.item(0);
+      this.brandService.pushFileToStorage(this.currentFileUpload,this.imageName).subscribe();
+    }
+    
     form.value.image = this.imageName;
     this.brandService.findBrandByName(form.value.brandName).subscribe(brand=>{
       form.value.brandEntity = brand;
@@ -74,10 +80,7 @@ export class EditProductComponent implements OnInit {
         })
       })
     });
-    if(this.tempFileChange == true){
-      this.currentFileUpload = this.selectedFiles.item(0);
-      this.brandService.pushFileToStorage(this.currentFileUpload,this.imageName).subscribe();
-    }
+    
     
   }
   onClose(){

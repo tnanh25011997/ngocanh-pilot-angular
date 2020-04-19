@@ -72,6 +72,10 @@ export class AddProductComponent implements OnInit {
 
 
   onSubmit(form){
+    //upload image
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.brandService.pushFileToStorage(this.currentFileUpload,this.imageName).subscribe();
+    //submit form
     form.value.image = this.imageName;
     this.brandService.findBrandByName(form.value.brandName).subscribe(brand=>{
       form.value.brandEntity = brand;
@@ -85,8 +89,7 @@ export class AddProductComponent implements OnInit {
         })
       })
     });
-    this.currentFileUpload = this.selectedFiles.item(0);
-    this.brandService.pushFileToStorage(this.currentFileUpload,this.imageName).subscribe();
+    
     console.log(form.value);
   }
   onClose(){
