@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/brand')
       },
       error =>{
-        this.snackBar.open("Đăng Nhập Thất Bại",'',{
+        this.snackBar.open("Login Failed",'',{
           duration:3000,
           panelClass:'custom-snackbar-err',
           verticalPosition:'top'
